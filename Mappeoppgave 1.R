@@ -17,7 +17,7 @@ data <- head(data, -1)
 clean_data <- data %>% 
   select(Year, Globe, Mo)
 
-# Selekterer Year, Globe og Mo
+# Selekterer Year, Globe og Mo.
 
 clean_data$Globe <- as.numeric(as.character(clean_data$Globe))
 
@@ -25,7 +25,7 @@ clean_data$moyear <- paste(clean_data$Year, "-", clean_data$Mo)
 
 clean_data$moyear <- as.yearmon(paste(clean_data$Year, clean_data$Mo), "%Y %m")
 
-# Lager moyear som er Mo og Year blandet, og gjør formatet om til år og måned
+# Lager moyear som er Mo og Year blandet, og gjør formatet om til år og måned.
 
 clean_data %>% 
   ggplot(aes(x = moyear, y = Globe)) +
@@ -74,11 +74,11 @@ clean_data4 <- clean_data4 [-c(1)]
 clean_data4 <- clean_data4 %>% 
   select(NoPol4)
 
-# Sorterer dataen
+# Sorterer dataen.
 
 ultimate_data <- cbind(clean_data1, clean_data2, clean_data3, clean_data4)
 
-# I "NoPol4" så er det ikke like mange observasjoner som i de andre "NoPol" kolonnene. Dataen blir resirklulert som gjør at
+# I "NoPol4" er det ikke like mange observasjoner som i de andre "NoPol" kolonnene. Dataen blir resirklulert som gjør at
 # at gjennomsnittet fra 2020 og utover ikke blir riktig. Jeg fant ikke ut noen enkel måte å fikse dette på.
 
 ultimate_data %>% 
@@ -94,4 +94,4 @@ ultimate_data %>%
        x = "") +
   theme(axis.text.x = element_text(angle = 90))
 
-# Skulle legge til "stat = "identity" eller liknende for å vise hva hver farge viser, men fikk ikke det til.
+# Skulle legge til "stat = "identity" eller liknende for å vise hva hver farge viser på grafen, men fikk ikke det til. Som du ser viser Rød Lower Troposphere, Blå viser Mid-Troposphere, Lilla viser Tropopause, Grønn viser Lower Stratosphere og Svart viser gjennomsnittet av disse fire datasettene.
