@@ -34,7 +34,8 @@ clean_data %>%
   geom_line(col = "red", size = 1.25, aes(y=rollmean(clean_data$Globe, 13, na.pad = TRUE))) +
   scale_x_yearmon(labels = clean_data$Year, breaks = clean_data$Year, expand = c(0, 0), limits = c(1979, NA)) +
   scale_y_continuous(labels = scales::comma_format(accuracy=0.1), limits=c(-0.7, 0.9), breaks=seq(-0.7, 0.9, by = 0.1)) +
-  labs(y = "T departure from '91 - '20 Avg. (deg. C)", 
+  labs(title = "Latest Global Temps",
+       y = "T departure from '91 - '20 Avg. (deg. C)", 
        x = "Latest Global Avarage Trpopspheric Tempratures") +
   theme(axis.text.x = element_text(angle = 90))
 
@@ -90,7 +91,8 @@ ultimate_data %>%
   geom_line(colour = "black", size = 1.25, aes(y=rollmean(ultimate_data$NoPol1+NoPol2+NoPol3+NoPol4, 13, na.pad = TRUE))) +
   scale_x_yearmon(labels = ultimate_data$Year, breaks = ultimate_data$Year, expand = c(0, 0), limits = c(1979, NA)) +
   scale_y_continuous(labels = scales::comma_format(accuracy=1), limits=c(-10, 10), breaks=seq(-10, 10, by = 1)) +
-  labs(y = "Temperaturer 60° - 90° Nord",
+  labs(title = "Temperaturer 60° - 90° Nord",
+       y = "Temperaturer",
        x = "") +
   theme(axis.text.x = element_text(angle = 90))
 
