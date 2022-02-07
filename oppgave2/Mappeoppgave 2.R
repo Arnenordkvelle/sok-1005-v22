@@ -32,4 +32,4 @@ UScovid %>%
   theme_bw()
 # Den blå lineære linja på grafen tror jeg skal representere gjennomsnittet og den svarte området viser koeffisienten.
 # Linja viser en nedgang av dødsfall desto mer prosent av befolkningen er vaksinert. 
-#Det er en tydelig korrelasjon mellom antall prosent vaksinerte og dødsfall.
+# Det er en tydelig korrelasjon mellom antall prosent vaksinerte og dødsfall.
