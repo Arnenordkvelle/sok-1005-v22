@@ -30,7 +30,7 @@ lm(deaths_per_100k ~ fully_vaccinated_pct_of_pop, data = UScovid)
 # Plot 2
 UScovid %>%
   ggplot(aes(x=fully_vaccinated_pct_of_pop, y=deaths_per_100k, label = name)) +
-  geom_point(size = 4, shape = 21, col="palegreen4", fill = "palegreen4", stroke = 0.3, alpha = 0.7) + geom_text_repel(box.padding = unit(0.5, "lines")) +
+  geom_point(size = 3, shape = 21, col="palegreen4", fill = "palegreen4", stroke = 1, alpha = 0.5) + geom_text_repel(box.padding = unit(0.5, "lines")) +
   geom_smooth(method = lm) +
   scale_x_continuous(labels = scales::percent, limits=c(0.45, 0.80), breaks=seq(0.45, 0.80, by = 0.05)) +
   labs(title="20 avg. monthly deaths per 100,000",
