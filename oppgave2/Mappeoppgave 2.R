@@ -30,5 +30,6 @@ UScovid %>%
        x ="Share of total population fully vaccinated",
        y = "Monthly deaths per 100,000") +
   theme_bw()
-# Den blå lineære linja på grafen tror jeg skal representere gjennomsnittet og den svarte området viser koeffisienten 
-# Linja viser en nedgang av dødsfall desto mer prosent av befolkningen er vaksinert. Det er en tydelig korrelasjon mellom antall prosent vaksinerte og dødsfall.
+# Den blå lineære linja på grafen tror jeg skal representere gjennomsnittet og den svarte området viser koeffisienten.
+# Linja viser en nedgang av dødsfall desto mer prosent av befolkningen er vaksinert. 
+#Det er en tydelig korrelasjon mellom antall prosent vaksinerte og dødsfall.
