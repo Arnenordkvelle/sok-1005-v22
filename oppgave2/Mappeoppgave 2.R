@@ -3,10 +3,14 @@ library(jsonlite)
 library(scales)
 library(ggrepel)
 
+# Laster ned data med jsonlite
 UScovid <- fromJSON("https://static01.nyt.com/newsgraphics/2021/12/20/us-coronavirus-deaths-2021/ff0adde21623e111d8ce103fedecf7ffc7906264/scatter.json")
 
+# Bruker R sin funksjon for forkortelser av de 50 statene
 UScovid$name <- state.abb[match(UScovid$name, state.name)]
 
+# i dataframen er DC også med, og som vi vet er DC ikke en stat. I dette tilfellet gjør vi
+# alle "NA" verdier om til "DC" for å få den med på plottet.
 UScovid[is.na(UScovid)] <- "DC"
 
 UScovid %>%
