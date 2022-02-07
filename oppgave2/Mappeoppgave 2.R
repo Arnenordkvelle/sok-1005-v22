@@ -14,6 +14,7 @@ UScovid$name <- state.abb[match(UScovid$name, state.name)]
 UScovid[is.na(UScovid)] <- "DC"
 
 # Plot 1
+# Bruker scale_x_continuous for å få riktig labels på x-aksen, samt breaks og limits for å få det så likt som mulig.
 UScovid %>%
   ggplot(aes(x=fully_vaccinated_pct_of_pop, y=deaths_per_100k, label = name)) +
   geom_point(size = 4, shape = 20, col="palegreen4", fill = "palegreen4", stroke = 0.1, alpha = 1) + geom_text_repel(box.padding = unit(0.1, "lines")) +
