@@ -9,7 +9,7 @@ UScovid <- fromJSON("https://static01.nyt.com/newsgraphics/2021/12/20/us-coronav
 # Bruker R sin funksjon for forkortelser av de 50 statene
 UScovid$name <- state.abb[match(UScovid$name, state.name)]
 
-# i dataframen er DC også med, og som vi vet er DC ikke en stat. I dette tilfellet gjør vi
+# I dataframen er DC også med, og som vi vet er DC ikke en stat. I dette tilfellet gjør vi
 # alle "NA" verdier om til "DC" for å få den med på plottet.
 UScovid[is.na(UScovid)] <- "DC"
 
