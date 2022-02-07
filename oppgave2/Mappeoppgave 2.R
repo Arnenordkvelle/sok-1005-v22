@@ -17,7 +17,7 @@ UScovid[is.na(UScovid)] <- "DC"
 # Bruker scale_x_continuous for å få riktig labels på x-aksen, samt breaks og limits for å få det så likt som mulig.
 UScovid %>%
   ggplot(aes(x=fully_vaccinated_pct_of_pop, y=deaths_per_100k, label = name)) +
-  geom_point(size = 4, shape = 20, col="palegreen4", fill = "palegreen4", stroke = 0.1, alpha = 1) + geom_text_repel(box.padding = unit(0.1, "lines")) +
+  geom_point(size = 4, shape = 20, col="palegreen4", fill = "palegreen4", stroke = 1, alpha = 0.5) + geom_text_repel(box.padding = unit(0.1, "lines")) +
   scale_x_continuous(labels = scales::percent, limits=c(0.45, 0.80), breaks=seq(0.45, 0.80, by = 0.05)) +
   labs(title="20 avg. monthly deaths per 100,000",
        x ="Share of total population fully vaccinated",
