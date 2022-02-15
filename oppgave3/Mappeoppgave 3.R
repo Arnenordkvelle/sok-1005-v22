@@ -16,11 +16,11 @@ data <- data %>%
 
 data = select(data, -c(1, 4))
 
-data =data[-1,]
+data = data[-1,]
 
-data <-data[!grepl("x",data$STOPP),]
+data <- data[!grepl("x",data$STOPP),]
 
-data$STOPP<-gsub("km","",as.character(data$STOPP))
+data$STOPP <- gsub("km","",as.character(data$STOPP))
 
 data$STOPP <- as.numeric(as.character(data$STOPP))
 
