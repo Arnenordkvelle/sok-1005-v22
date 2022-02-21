@@ -1,7 +1,6 @@
 # Nødvendige pakker
 
 library(tidyverse)
-library(rvest)
 library(proto)
 
 data <- read_html("https://www.motor.no/aktuelt/motors-store-vintertest-av-rekkevidde-pa-elbiler/217132")
@@ -41,22 +40,21 @@ data$STOPP <- gsub("km","",as.character(data$STOPP))
 data$STOPP <- as.numeric(as.character(data$STOPP))
 
 # Selekterer de 3 første characterene i hver obersvasjon i kolonna
-# Kan ikke ta æren for å skrive dette, fant koden etter søking på stackoverflow.com
-# kilde: https://stackoverflow.com/questions/21675379/r-only-keep-the-3-x-first-characters-in-a-all-rows-in-a-column/21675473
+# https://stackoverflow.com/questions/21675379/r-only-keep-the-3-x-first-characters-in-a-all-rows-in-a-column/21675473
 
-data$WLTP <- sub("^(\\d{3}).*$", "\\1",data$WLTP)
+data$WLTP <- substr(data$WLTP, 0, 3)
 
 # Gjør om til numerisk fra character
 
 data$WLTP <- as.numeric(as.character(data$WLTP))
 
-# Plot med geom_point, geom_abline, brakes og limits
+# Plot med geom_point, geom_abline, brakes og limits. Kunne også brukt ylim og xlim.
 
 data %>%
   ggplot(aes(x=WLTP, y=STOPP)) +
   geom_point(size = 1.5, col="black") +
   geom_abline(size = 1.55, col = "red") +
-  scale_x_continuous(limits= c(200, 600), breaks = seq(200, 600, by = 100)) +
+  scale_x_continuous(limits= c(200, 650), breaks = seq(200, 650, by = 100)) +
   scale_y_continuous(limits= c(200, 600), breaks = seq(200, 600, by = 100)) +
   labs(x ="WLTP",
        y = "STOPP") +
@@ -73,13 +71,15 @@ data %>%
   geom_point(size = 1.5, col="black") +
   geom_abline(size = 1.5, col = "red") +
   geom_smooth(method = lm) +
-  scale_x_continuous(limits= c(200, 600), breaks = seq(200, 600, by = 100)) +
+  scale_x_continuous(limits= c(200, 645), breaks = seq(200, 645, by = 100)) +
   scale_y_continuous(limits= c(200, 600), breaks = seq(200, 600, by = 100)) +
-  labs(x ="WLTP",
+  labs(title = "STOPP versus WLTP Test",
+       x ="WLTP", 
        y = "STOPP") +
   theme_bw()
 
 # Den blå regresjonslinja viser at bilene er i gjennomsnitt ganske nærme på å ha rekkeviden de reklamerer å ha.
-#
-
+# WLTP testen er en test som blir gjort innendørs i et rom med 23 grader, i motsettning til STOPP gjort utendørs i kulda. 
+# Den røde linja (WLTP-testen) viser stigningstall på 1:1, mens den blå linja (STOPP-testen) viser at stigningstallet er 1:0,867. 
+# Dette avviket mellom den blå og røde linja sier noe om hvordan kulde kan påvirke el-biler samt avvik fra hva bilprodusentens oppgitte kjørelengde.
 
