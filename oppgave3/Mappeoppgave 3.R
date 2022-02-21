@@ -81,5 +81,5 @@ data %>%
 # Den blå regresjonslinja viser at bilene er i gjennomsnitt ganske nærme på å ha rekkeviden de reklamerer å ha.
 # WLTP testen er en test som blir gjort innendørs i et rom med 23 grader, i motsettning til STOPP gjort utendørs i kulda. 
 # Den røde linja (WLTP-testen) viser stigningstall på 1:1, mens den blå linja (STOPP-testen) viser at stigningstallet er 1:0,867. 
-# Dette avviket mellom den blå og røde linja sier noe om hvordan kulde kan påvirke el-biler samt avvik fra hva bilprodusentens oppgitte kjørelengde.
+# Dette avviket mellom den blå og røde linja viser hvordan kulde kan påvirke el-biler samt avviket fra hva bilprodusentens oppgitte kjørelengde egentlig er.
 
