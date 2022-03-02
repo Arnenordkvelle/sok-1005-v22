@@ -35,7 +35,5 @@ scrape <- function(url) {
   
 }
 
-map(url_list, scrape)
-
 timeplan <- map(url_list, scrape)
 timeplan <- bind_rows(timeplan)
