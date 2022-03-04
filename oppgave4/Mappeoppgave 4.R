@@ -2,6 +2,7 @@ library(rvest)
 library(tidyverse)
 library(rlist)
 library(purrr)
+library(zoo)
 
 # Lager liste med de tre nødvendige linkene
 
@@ -10,18 +11,23 @@ url_list <- list("https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D
                  "https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D=SOK-1016-1&week=1-20&View=list")
 
 # Lager funksjon som kan scrape disse tre nettsidene med koden vi fikk fra "scrape_timeplan.R"
+# Rad 7, 13, 19, 20, 29, 31 og 34 viser bare NA i verdi, så ved hjelp av "na.locf" så velger vi forrige verdi som ikke er NA som valgt dato.
 
 scrape <- function(url) {
   page <- read_html(url)
   
-  table <- html_nodes(page, 'table') 
-  table <- html_table(table, fill=TRUE) 
+  table <- html_nodes(page, 'table')
+  table <- html_table(table, fill=TRUE)
   
   dframe <- list.stack(table)
   
   colnames(dframe) <- dframe[1,]
   
   dframe <- dframe %>% filter(!Dato=="Dato")
+  
+  dframe$Dato[dframe$Dato==""] <- NA
+  
+  dframe$Dato <- na.locf(dframe$Dato)
   
   dframe <- dframe %>% separate(Dato, 
                                 into = c("Dag", "Dato"), 
