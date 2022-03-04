@@ -3,13 +3,11 @@ library(tidyverse)
 library(rlist)
 library(purrr)
 
-url1 <-"https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D=SOK-1005-1&week=1-20&View=list"
-url2 <- "https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D=SOK-1006-1&week=1-20&View=list"
-url3 <- "https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D=SOK-1016-1&week=1-20&View=list"
-
 # Lager liste med de tre nødvendige linkene
 
-url_list <- list(url1, url2, url3)
+url_list <- list("https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D=SOK-1005-1&week=1-20&View=list",
+                 "https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D=SOK-1006-1&week=1-20&View=list",
+                 "https://timeplan.uit.no/emne_timeplan.php?sem=22v&module%5B%5D=SOK-1016-1&week=1-20&View=list")
 
 # Lager funksjon som kan scrape disse tre nettsidene med koden vi fikk fra "scrape_timeplan.R"
 
@@ -39,7 +37,11 @@ scrape <- function(url) {
   
 }
 
-# Definerer "timeplan" med mapping av "url_list", med funksjonen "scrape", så binder jeg sammen dataframesa
+# Definerer "timeplan" der mapping av "url_list" blir brukt, med funksjonen "scrape", så binder jeg sammen dataframesa. Til slutt arrangerer jeg timene etter dato og tidspunkt.
 
 timeplan <- map(url_list, scrape)
+
 timeplan <- bind_rows(timeplan)
+
+timeplan <- timeplan %>% 
+  arrange(Dato, Tid)
